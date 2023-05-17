@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    env_file:
+      - ./config/.env
+    environment:
+      - POSTGRES_USER=${DBUSER}
+      - POSTGRES_PASSWORD=${DBPASSWORD}     
+      - POSTGRES_DB=${DBNAME}
+      - DATABASE_HOST=${DBHOST}
+      - DATABASE_PORT=${DBPORT}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data

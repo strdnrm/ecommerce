@@ -1,0 +1,7 @@
+config
+
+client/node_modules/
+
+server/configs/
+
+server/main.exe
