@@ -12,6 +12,7 @@ type ProductRepository interface {
 	Create(*model.Product) error
 	FindById(string) (*model.Product, error)
 	All() (*[]model.Product, error)
+	GetCategories() (*[]string, error)
 }
 
 type EmployeeRepository interface {

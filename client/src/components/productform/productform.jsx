@@ -100,7 +100,7 @@ export const ProductForm = (props) => {
                 </div>
                 <div className="edit-item">
                     <p>Описание</p>
-                    <textarea
+                    <textarea className="description-area"
                     id="name-edit"
                     onChange={(event) => setDescription(event.target.value)}
                     />

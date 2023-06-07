@@ -1,17 +1,37 @@
-
 .navbar {
     position: relative;
 }
 
-.sort-price {
+/* .sort-price {
     right: 300px;
     top: 10px;
     position: absolute;
+} */
+
+.navbar-head {
+    display: flex;
 }
 
+.sort-container {
+    margin-right: auto;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+}
+
+.sort-item {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.sort-item:hover {
+    color: #0066ff; 
+    transform: scale(1.1);
+  }
+
 .categories {
-    /* height: 100px; */
-    padding: 30px;
+    display: flex;
 }
 
 .category {
@@ -19,5 +39,13 @@
     background: #e9e9e9;
     border-radius: 50px;
     padding: 10px 20px;
-    margin: 30px;
+    margin: 25px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 500ms ease;
+}
+
+.category:hover {
+    border-color: silver;
+    transform: scale(1.1);
 }

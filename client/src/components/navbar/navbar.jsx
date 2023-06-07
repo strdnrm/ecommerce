@@ -1,24 +1,50 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ShoppingCart, UserCircle, Chat, List } from "phosphor-react";
+import React, { useContext } from "react";
+import { ShopContext } from "../../context/shop-context";
 import { Searchbar } from "../searchbar/searchbar";
 import { SortDescending , SortAscending  } from "phosphor-react";
 
 import "./navbar.css";
 
+
 export const Navbar = () => {
-  const location = useLocation();
+  const { categories, setChoosenCategory, sortPrice, setSortPrice } = useContext(ShopContext);
+
+  // const chooseCategory = (category) => {
+  //   // console.log("cu" + category)
+  //   setChoosenCategory(category)
+  // } 
+
+  const chooseSort = (sortType) => {
+    if (sortPrice === sortType) {
+      setSortPrice(0)
+      return
+    }
+    setSortPrice(sortType)
+  }
 
   return (
     <div className="navbar">
+      <div className="navbar-head">
         <Searchbar/>
-        <p className="sort-price"><SortDescending size={32} />Цена</p>
-        <div className="categories">
-            <div className="category">Ноутбуки</div>
-            <div className="category">Мониторы</div>
-            <div className="category">Наушники</div>
-            <div className="category">Видеокарты</div>
+        <div className="sort-container">
+          <div className="sort-item" onClick={() => chooseSort(1)}>
+            <SortDescending size={32} />
+            <p className="sort-price">Цена</p>
+          </div>
+          <div className="sort-item">
+            <SortAscending size={32} onClick={() => chooseSort(2)}/>
+            <p className="sort-price">Цена</p>
+          </div>         
         </div>
+      </div>
+
+      <div className="categories">
+          {
+            categories && categories.map((e) => (
+              <div className="category" onClick={() => {setChoosenCategory(e)}}>{e}</div>
+            ))
+          }
+      </div>
     </div>
   );
 };

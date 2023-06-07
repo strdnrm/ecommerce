@@ -31,3 +31,9 @@
     right: 20px;
     position: absolute;
 }
+
+.description-area {
+    width: 320px;
+    resize: none;
+    height: 100px;
+}

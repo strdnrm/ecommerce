@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"ecommerce/pkg/model"
 	"ecommerce/pkg/store"
+	"log"
 
 	"github.com/google/uuid"
 )
@@ -74,4 +75,26 @@ func (r *ProductRepository) FindById(id string) (*model.Product, error) {
 		return nil, err
 	}
 	return &p, nil
+}
+
+func (r *ProductRepository) GetCategories() (*[]string, error) {
+	var categories []string
+	rows, err := r.store.db.Query(`
+	SELECT category FROM product
+	GROUP BY category
+	`)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, store.ErrRecordNotFound
+		}
+		return nil, err
+	}
+	for rows.Next() {
+		var value string
+		if err := rows.Scan(&value); err != nil {
+			log.Fatal(err)
+		}
+		categories = append(categories, value)
+	}
+	return &categories, nil
 }

@@ -20,6 +20,10 @@ export const Profile = () => {
         }
     }, [isAuthorized]);
 
+    const redirTolog = () => {
+        navigate("/login");
+    }
+
     // const logoutuser = () => {
     //     document.cookie.split(";").forEach(function(cookie) {
     //         document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
@@ -51,7 +55,7 @@ export const Profile = () => {
                 </div>
                 <div>
                 {/* onClick={logoutuser()} */}
-                    <button className="logout-btn">Выйти</button>
+                    <button className="logout-btn" onClick={redirTolog}>Выйти</button>
                 </div>
             </div>
         </div>:<div></div>

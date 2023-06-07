@@ -39,6 +39,7 @@ func ConfigureRouter(s store.Store, sessionKey string) *gin.Engine {
 
 	products := router.Group("/product")
 	products.GET("/list", controllers.HandleProductList())
+	products.GET("/categories", controllers.HandleCategoriesList())
 	products.POST("/create", middleware.AuthenticatAdmin(), controllers.HandleProductCreate())
 
 	authorized := router.Group("/private")

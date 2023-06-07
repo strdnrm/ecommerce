@@ -57,6 +57,20 @@ func HandleProductList() gin.HandlerFunc {
 	}
 }
 
+func HandleCategoriesList() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		categories, err := st.Product().GetCategories()
+		if err != nil {
+			fmt.Println(err)
+			c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, categories)
+	}
+}
+
 func HandleUpdateProduct() gin.HandlerFunc {
 
 	return func(c *gin.Context) {

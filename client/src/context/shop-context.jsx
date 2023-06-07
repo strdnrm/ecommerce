@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
-import userEvent from "@testing-library/user-event";
 export const ShopContext = createContext(null);
 
 export const ShopContextProvider = (props) => {
@@ -30,6 +29,23 @@ export const ShopContextProvider = (props) => {
     fetchData();
   }, []);  
 
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get('http://localhost:8080/product/categories');
+        setCategories(["Все", ...response.data])
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  
+    fetchData();
+  }, []);  
+  const [choosenCategory, setChoosenCategory] = useState("Все");
+
+  const [sortPrice, setSortPrice] = useState(0);
+
   const getDefaultCart = () => {
     let cart = {};
     for (let i = 1; i < products.length + 1; i++) {
@@ -39,6 +55,12 @@ export const ShopContextProvider = (props) => {
   };
   
   const [cartItems, setCartItems] = useState({});//getDefaultCart()
+
+  const [searchText, setSearchText] = useState("");
+  const handlerSearchInput = (e) => {
+    var lowerCase = e.target.value.toLowerCase();
+    setSearchText(lowerCase)
+  }
 
   const [activeUser, setActiveUser] = useState();
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -110,6 +132,15 @@ export const ShopContextProvider = (props) => {
   } 
 
   const contextValue = {
+    sortPrice,
+    setSortPrice,
+    setChoosenCategory,
+    choosenCategory,
+    categories,
+    setCategories,
+    setSearchText,
+    searchText,
+    handlerSearchInput,
     cartItems,
     addToCart,
     activeUser,

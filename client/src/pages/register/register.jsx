@@ -60,58 +60,58 @@ export const Register = () => {
 
     return (
       <div className="form-container">
-        <form onSubmit={handleSubmit}>
+        <form className="register-form" onSubmit={handleSubmit}>
         <p className="form-header">Регистрация</p>
-          <div>            
-            <p className="input-name">Имя:</p>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </div>
-          <div>            
-            <p className="input-name">Фамилия:</p>
-            <input
-              type="text"
-              id="lastname"
-              value={lastname}
-              onChange={(event) => setLastname(event.target.value)}
-            />
-          </div>
-          <div>            
-             {/* + validator.isEmail(email)?"error-field":""} */}
-            <p className="input-name">Email:</p>
-            <input
-              type="text"
-              id="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-          <div>         
-            <p className="input-name">Номер телефона:</p>
-            <input
-              type="text"
-              id="phone"
-              value={phone}
-              onChange={(event) => setPhone(event.target.value)}
-            />
-          </div>
-          <div>
-            <p className="input-name">Пароль:</p>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </div>
-          <button type="submit">Зарегистрироваться</button>
-          <Link to="/login" className="register-link">
-            Войти
-          </Link>
+        <div>            
+          <p className="input-name">Имя:</p>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+        </div>
+        <div>            
+          <p className="input-name">Фамилия:</p>
+          <input
+            type="text"
+            id="lastname"
+            value={lastname}
+            onChange={(event) => setLastname(event.target.value)}
+          />
+        </div>
+        <div>            
+            {/* + validator.isEmail(email)?"error-field":""} */}
+          <p className="input-name">Email:</p>
+          <input
+            type="text"
+            id="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </div>
+        <div>         
+          <p className="input-name">Номер телефона:</p>
+          <input
+            type="text"
+            id="phone"
+            value={phone}
+            onChange={(event) => setPhone(event.target.value)}
+          />
+        </div>
+        <div>
+          <p className="input-name">Пароль:</p>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+        <button type="submit">Зарегистрироваться</button>
+        <Link to="/login" className="register-link">
+          Войти
+        </Link>
         </form>
       </div>
     );
